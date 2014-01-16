@@ -1,17 +1,17 @@
 ﻿{
-    "name": "knockout.google.maps.clusterer",
+    "name": "knockout.google.maps.infobox",
     "version": "0.1.0",
     "author": "Manuel Guilbault (https://github.com/manuel-guilbault)",
-    "description": "Integration of Google Maps marker clusterer to knockout.google.maps.",
+    "description": "Integration of Google Maps infobox to knockout.google.maps.",
     "repository": {
         "type": "git",
-        "url": "https://github.com/manuel-guilbault/knockout.google.maps.clusterer/"
+        "url": "https://github.com/manuel-guilbault/knockout.google.maps.infobox/"
     },
     "keywords": [
         "knockout",
         "google",
         "maps",
-		"clusterer"
+		"infobox"
     ],
     "devDependencies": {
         "grunt": "~0.4.2",

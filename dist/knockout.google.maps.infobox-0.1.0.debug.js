@@ -1,8 +1,8 @@
 /*
-*   knockout.google.maps.clusterer 0.1.0 (2014-01-15)
+*   knockout.google.maps.infobox 0.1.0 (2014-01-16)
 *   Created by Manuel Guilbault (https://github.com/manuel-guilbault)
 *
-*   Source: https://github.com/manuel-guilbault/knockout.google.maps.clusterer
+*   Source: https://github.com/manuel-guilbault/knockout.google.maps.infobox
 *   MIT License: http://www.opensource.org/licenses/MIT
 */
 (function (factory) {
