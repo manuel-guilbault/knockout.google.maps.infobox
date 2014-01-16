@@ -30,7 +30,9 @@
         var infobox = new InfoBox(options);
 
         ko.google.maps.binder.bind(bindingContext, bindings, infobox, subscriptions, ko.bindingHandlers.infobox.binders);
-        infoBox.open(bindingContext.$map, ko.utils.unwrapObservable(bindings.anchor));
+        infobox.open(bindingContext.$map, ko.utils.unwrapObservable(bindings.anchor));
+
+        return infobox;
     }
 
     function hideInfoBox(infobox, subscriptions) {
@@ -84,7 +86,7 @@
 
         binders: {
             panToSelfWhenShown: {
-                bind: function(bindingContext, bindings, infobox, subscriptions) {
+                bind: function (bindingContext, bindings, infobox, subscriptions) {
                     if (ko.isObservable(bindings.visible)) {
                         subscriptions.addKOSubscription(bindings.visible.subscribe(function (visible) {
                             if (ko.utils.unwrapObservable(bindings.panToSelfWhenShown) && visible) {
@@ -97,8 +99,8 @@
                 }
             },
             disableAutoPan: {
-                createOptions: 'disableAutoPan',
-                bindings: 'disableAutoPan'
+                createOptions: { name: 'disableAutoPan', type: 'bool' },
+                bindings: { name: 'disableAutoPan', type: 'bool' }
             },
             maxWidth: {
                 createOptions: 'maxWidth',
@@ -113,8 +115,8 @@
                 bindings: { name: 'position', vmToObj: { setter: 'setPosition' } }
             },
             alignBottom: {
-                createOptions: 'alignBottom',
-                bindings: 'alignBottom'
+                createOptions: { name: 'alignBottom', type: 'bool' },
+                bindings: { name: 'alignBottom', type: 'bool' }
             },
             boxClass: {
                 createOptions: 'boxClass',
