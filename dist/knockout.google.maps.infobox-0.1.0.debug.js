@@ -1,5 +1,5 @@
 /*
-*   knockout.google.maps.infobox 0.1.0 (2014-01-16)
+*   knockout.google.maps.infobox 0.1.0 (2014-01-21)
 *   Created by Manuel Guilbault (https://github.com/manuel-guilbault)
 *
 *   Source: https://github.com/manuel-guilbault/knockout.google.maps.infobox
@@ -73,7 +73,8 @@
                         hideInfoBox(infobox, subscriptions);
                     }
                 }));
-            } else if (bindings.visible) {
+            }
+            if (ko.utils.unwrapObservable(bindings.visible)) {
                 infobox = showInfoBox(element, bindings, viewModel, bindingContext, subscriptions);
             }
 

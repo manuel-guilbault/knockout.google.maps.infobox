@@ -51,7 +51,8 @@
                         hideInfoBox(infobox, subscriptions);
                     }
                 }));
-            } else if (bindings.visible) {
+            }
+            if (ko.utils.unwrapObservable(bindings.visible)) {
                 infobox = showInfoBox(element, bindings, viewModel, bindingContext, subscriptions);
             }
 
