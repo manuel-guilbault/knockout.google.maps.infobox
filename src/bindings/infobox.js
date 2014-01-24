@@ -1,14 +1,18 @@
 ﻿(function () {
     function showInfoBox(element, bindings, viewModel, bindingContext, subscriptions) {
-        element = element.cloneNode(true);
-        ko.applyBindingsToDescendants(bindingContext.extend({ $subscriptions: subscriptions }), element);
+        var elementClone = ko.google.maps.utils.cloneNode(element, true);
+        ko.applyBindingsToDescendants(bindingContext.extend({ $subscriptions: subscriptions }), elementClone);
 
         var options = ko.google.maps.binder.getCreateOptions(bindingContext, bindings, ko.bindingHandlers.infobox.binders);
-        options.content = element;
+        options.content = elementClone;
         var infobox = new InfoBox(options);
 
         ko.google.maps.binder.bind(bindingContext, bindings, infobox, subscriptions, ko.bindingHandlers.infobox.binders);
         infobox.open(bindingContext.$map, ko.utils.unwrapObservable(bindings.anchor));
+
+        subscriptions.add(function () {
+            ko.cleanNode(elementClone);
+        });
 
         return infobox;
     }
@@ -38,9 +42,9 @@
                 throw 'infobox binding requires a visible binding.';
             }
 
-            element = element.cloneNode(true);
+            //element = element.cloneNode(true);
 
-            var infobox,
+            var infobox = null,
                 parentSubscriptions = bindingContext.$subscriptions,
                 subscriptions = new ko.google.maps.Subscriptions();
             if (ko.isObservable(bindings.visible)) {
@@ -49,6 +53,7 @@
                         infobox = showInfoBox(element, bindings, viewModel, bindingContext, subscriptions);
                     } else {
                         hideInfoBox(infobox, subscriptions);
+                        infobox = null;
                     }
                 }));
             }
@@ -57,7 +62,9 @@
             }
 
             parentSubscriptions.add(function () {
-                hideInfoBox(infobox, subscriptions);
+                if (infobox) {
+                    hideInfoBox(infobox, subscriptions);
+                }
             });
 
             return { controlsDescendantBindings: true };
