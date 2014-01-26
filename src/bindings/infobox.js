@@ -35,13 +35,7 @@
             }
 
             var bindings = ko.utils.unwrapObservable(valueAccessor());
-            if (bindings.anchor === undefined) {
-                throw 'infobox binding requires an anchor binding.';
-            }
-            if (bindings.visible === undefined) {
-                throw 'infobox binding requires a visible binding.';
-            }
-
+            
             //element = element.cloneNode(true);
 
             var infobox = null,
